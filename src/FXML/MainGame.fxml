@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller">
+  <children>
+    <ListView id="messageBoard" layoutX="500.0" layoutY="0.0" prefHeight="400.0" prefWidth="200.0" />
+    <Button id="optionsButton" layoutX="518.0" layoutY="434.0" mnemonicParsing="false" text="Options" />
+    <Button id="exitButton" layoutX="608.0" layoutY="434.0" mnemonicParsing="false" text="Exit" />
+    <ImageView id="imageBoard" fitHeight="86.25" fitWidth="500.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" />
+    <Rectangle id="villager1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="26.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="138.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="250.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="365.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="26.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="138.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="250.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="365.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="26.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="138.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="250.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Rectangle id="villager12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="365.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+  </children>
+</AnchorPane>
