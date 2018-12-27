@@ -20,12 +20,12 @@ public class GameApplication extends Application {
 
         Controller mainController = loader.getController();
 
-        mainController.init();
-
         //Basic main Window parameters
         primaryStage.setTitle("Inquisitors Of Salem");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        mainController.init();
     }
 }

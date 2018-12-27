@@ -1,8 +1,8 @@
-package Core;
+package Entities;
 
 public class Entity {
     private int _ID;
-    private String _role;
+    private String _role = "Villager";
     private boolean _dead;
 
     public void kill() {
@@ -25,7 +25,12 @@ public class Entity {
         return _role;
     }
 
-    public void setEole(String _role) {
+    public void setRole(String _role) {
         this._role = _role;
+    }
+
+    public String toString() {
+        String _output = this._role + " ID: " + this._ID;
+        return _output;
     }
 }

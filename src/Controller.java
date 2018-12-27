@@ -11,6 +11,12 @@ public class Controller {
     private Button optionButton;
 
     public void init() {
+        try {
+            _mainGame.newGame();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
+        _mainGame.listVillagers();
     }
 }
