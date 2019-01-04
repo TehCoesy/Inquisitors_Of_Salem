@@ -9,12 +9,21 @@ public class Game {
     private int day = 0;
 
     //GAMEPLAY PARAMETERS
-    private static final int PLAYER_COUNT = 12;
+    private static final int PLAYER_COUNT = 11;
     private static final int VILLAGER_COUNT = 9;
     private static final int ENEMIES_COUNT = 3;
 
     //UTILITY
     Ballot ballot;
+
+    //RENDERING
+    GameCanvas _gameView;
+
+    public Game(GameCanvas gameView) {
+        this._gameView = gameView;
+        this._gameView.setCount(PLAYER_COUNT);
+
+    }
 
     private ArrayList<Entity> _allEntities;
     private ArrayList<Entity> _villagers;
@@ -27,6 +36,10 @@ public class Game {
         _allEntities = new ArrayList<>();
         _villagers = new ArrayList<>();
         _enemies = new ArrayList<>();
+
+        if (VILLAGER_COUNT + ENEMIES_COUNT != PLAYER_COUNT) {
+            throw new Exception("Internal Setting: PLAYER_COUNT not valid (different than VILLAGER_COUNT + ENEMIES_COUNT)");
+        }
 
         for (int i = 0; i < ENEMIES_COUNT; i++) {
             Enemy enemy = new Enemy();

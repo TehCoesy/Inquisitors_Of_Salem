@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Controller {
     GameCanvas _gameView = new GameCanvas();
-    Game _mainGame = new Game();
+    Game _mainGame = new Game(_gameView);
 
     @FXML
     private Button exitButton;
@@ -26,6 +26,9 @@ public class Controller {
         }
 
         _mainGame.listVillagers();
+
+        _gameView.setWidth(gameViewPane.getWidth());
+        _gameView.setHeight(gameViewPane.getHeight());
 
         gameViewPane.getChildren().add(_gameView);
         _gameView.render();
