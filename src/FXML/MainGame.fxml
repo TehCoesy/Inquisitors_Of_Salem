@@ -14,17 +14,6 @@
     <Button id="optionsButton" layoutX="518.0" layoutY="434.0" mnemonicParsing="false" text="Options" />
     <Button id="exitButton" layoutX="608.0" layoutY="434.0" mnemonicParsing="false" text="Exit" />
     <ImageView id="imageBoard" fitHeight="86.25" fitWidth="500.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" />
-    <Rectangle id="villager1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="26.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="138.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="250.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="365.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="26.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="138.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="250.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="365.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="26.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="138.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="250.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
-    <Rectangle id="villager12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.25" layoutX="365.0" layoutY="307.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+    <Pane fx:id="gameViewPane" layoutX="0.0" layoutY="86.0" prefHeight="400.0" prefWidth="480.0" />
   </children>
 </AnchorPane>
