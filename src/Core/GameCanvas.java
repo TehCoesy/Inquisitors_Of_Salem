@@ -1,8 +1,10 @@
 package Core;
 
 
+import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
@@ -11,6 +13,28 @@ public class GameCanvas extends Canvas {
     private int SQUARE_SIZE = 100;
     private int COUNT_PER_ROW = 4;
 
+    public GameCanvas() {
+        setOnMouseClicked(e -> {
+            System.out.println("Clicked");
+        });
+
+        setOnMouseEntered(e -> {
+            System.out.println("Mouse Enter");
+        });
+
+        setOnMouseExited(e -> {
+            System.out.println("Mouse Exit");
+        });
+
+        setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.print("Mouse Moved ");
+                System.out.print("X:" + event.getX() + " ");
+                System.out.print("Y:" + event.getY() + " \n");
+            }
+        });
+    }
     public void setCount(int count) {
         this.PLAYER_COUNT = count;
     }

@@ -25,7 +25,7 @@ public class Controller {
             System.out.println(e.getMessage());
         }
 
-        _mainGame.listVillagers();
+        //_mainGame.listVillagers();
 
         _gameView.setWidth(gameViewPane.getWidth());
         _gameView.setHeight(gameViewPane.getHeight());
