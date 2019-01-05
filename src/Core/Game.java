@@ -9,7 +9,7 @@ public class Game {
     private int day = 0;
 
     //GAMEPLAY PARAMETERS
-    private static final int PLAYER_COUNT = 11;
+    private static final int PLAYER_COUNT = 12;
     private static final int VILLAGER_COUNT = 9;
     private static final int ENEMIES_COUNT = 3;
 
@@ -17,13 +17,6 @@ public class Game {
     Ballot ballot;
 
     //RENDERING
-    GameCanvas _gameView;
-
-    public Game(GameCanvas gameView) {
-        this._gameView = gameView;
-        this._gameView.setCount(PLAYER_COUNT);
-
-    }
 
     private ArrayList<Entity> _allEntities;
     private ArrayList<Entity> _villagers;

@@ -8,15 +8,15 @@ import javafx.stage.Stage;
 import java.awt.*;
 
 public class Controller {
-    GameCanvas _gameView = new GameCanvas();
-    Game _mainGame = new Game(_gameView);
-
     @FXML
     private Button exitButton;
     @FXML
     private Button optionButton;
     @FXML
     private Pane gameViewPane;
+
+    private VillagerFactory _factory = new VillagerFactory();
+    Game _mainGame = new Game();
 
     public void init() {
         try {
@@ -27,10 +27,8 @@ public class Controller {
 
         //_mainGame.listVillagers();
 
-        _gameView.setWidth(gameViewPane.getWidth());
-        _gameView.setHeight(gameViewPane.getHeight());
-
-        gameViewPane.getChildren().add(_gameView);
-        _gameView.render();
+        for (int i = 0; i < 12; i++) {
+            gameViewPane.getChildren().add(_factory.createPlayer(i));
+        }
     }
 }
