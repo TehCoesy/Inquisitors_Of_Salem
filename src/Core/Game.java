@@ -1,7 +1,10 @@
 package Core;
 
+import Controllers.Controller;
+import Core.MyButton;
 import Entities.*;
 import Utility.Ballot;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -14,16 +17,24 @@ public class Game {
     private static final int ENEMIES_COUNT = 3;
 
     //UTILITY
+    VillagerFactory _factory = new VillagerFactory();
     Ballot ballot;
 
     //RENDERING
+    private ArrayList<MyButton> _buttons = new ArrayList<>();
+    private Controller _mainController;
 
+    //ENTITIES
     private ArrayList<Entity> _allEntities;
     private ArrayList<Entity> _villagers;
     private ArrayList<Entity> _enemies;
     private Investigator _invest;
 
     public void newGame() throws Exception {
+        if (_mainController == null) {
+            throw new Exception("newGame(): UI Controller not set.");
+        }
+
         ballot = new Ballot(PLAYER_COUNT);
 
         _allEntities = new ArrayList<>();
@@ -67,6 +78,22 @@ public class Game {
     public void listVillagers() {
         for (Entity entity : _allEntities) {
             System.out.println(entity.toString());
+        }
+    }
+
+    public void setController(Controller controller) {
+        this._mainController = controller;
+    }
+
+    public void setUI() {
+        for (int i = 0; i < PLAYER_COUNT; i++) {
+            MyButton button = _factory.createPlayer(i);
+            _buttons.add(button);
+            button.setOnAction(e -> {
+                System.out.println("Villager " + button.getID());
+                _mainController.addEvent("Clicked on Villager " + button.getID());
+            });
+            _mainController.addButton(button);
         }
     }
 }

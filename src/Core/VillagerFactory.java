@@ -8,20 +8,24 @@ public class VillagerFactory {
     private final int SQUARE_SIZE = 100;
     private final int COUNT_PER_ROW = 4;
 
-    public ArrayList<Button> _players = new ArrayList<>();
+    private ArrayList<MyButton> _buttons = new ArrayList<>();
 
-    public Button createPlayer(int _id) {
+    public MyButton createPlayer(int _id) {
         int _calc = _id % COUNT_PER_ROW;
-        Button button = new Button();
+        MyButton button = new MyButton();
         button.setPrefWidth(SQUARE_SIZE);
         button.setPrefHeight(SQUARE_SIZE);
-        button.setLayoutX(10 + (_calc) * (SQUARE_SIZE + 20));
-        button.setLayoutY(10 + ((_id - _calc) / COUNT_PER_ROW) * (SQUARE_SIZE + 20));
+        button.setLayoutX(20 + (_calc) * (SQUARE_SIZE + 20));
+        button.setLayoutY(20 + ((_id - _calc) / COUNT_PER_ROW) * (SQUARE_SIZE + 20));
         button.setText("Villager " + (_id + 1));
+        button.setID(_id + 1);
+        _buttons.add(button);
+        /*
         button.setOnAction(e -> {
             System.out.println("Villager " + (_id + 1));
         });
-        _players.add(button);
+        */
         return button;
     }
+
 }
