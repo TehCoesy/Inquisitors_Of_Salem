@@ -26,7 +26,7 @@ public class Controller {
     @FXML
     private Button nextTurn;
     @FXML
-    private Button lynch;
+    private Button lynchAction;
     @FXML
     private Button investigatorAction;
     @FXML
@@ -62,8 +62,16 @@ public class Controller {
             _mainGame.nightTime();
         });
 
-        lynch.setOnAction(e -> {
+        lynchAction.setOnAction(e -> {
+            _mainGame.registerAction("LYNCH");
+        });
 
+        investigatorAction.setOnAction(e -> {
+            _mainGame.registerAction("INVESTIGATOR");
+        });
+
+        healerAction.setOnAction(e -> {
+            _mainGame.registerAction("HEALER");
         });
     }
 
@@ -98,7 +106,7 @@ public class Controller {
             }
         });
 
-        lynch.setOnMouseClicked(e -> {
+        lynchAction.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.SECONDARY) {
                 System.out.println("Cancel");
             }

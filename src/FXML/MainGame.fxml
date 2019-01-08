@@ -30,7 +30,7 @@
             <Tooltip text="Next Turn" />
           </tooltip>
         </Button>
-        <Button fx:id="lynch" layoutX="448.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="Lynch">
+        <Button fx:id="lynchAction" layoutX="448.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="Lynch">
           <tooltip>
             <Tooltip text="Lynch" />
           </tooltip>

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Game {
     //GAMEPLAY
     private int day = 0;
-    private String _currentAction;
+    private String _currentAction = "";
 
     //GAMEPLAY PARAMETERS
     private static final int PLAYER_COUNT = 12;
@@ -92,12 +92,13 @@ public class Game {
             MyButton button = _factory.createPlayer(i);
             _buttons.add(button);
             button.setOnAction(e -> {
-                System.out.println("Villager " + button.getID());
-                _mainController.addEvent("Clicked on Villager " + button.getID());
+                if (this._currentAction != null) {
+                    System.out.println(this._currentAction + " ON Villager " + button.getID());
+                }
             });
             button.setOnMouseClicked(e -> {
                 if (e.getButton() == MouseButton.SECONDARY) {
-
+                    cancelAction();
                 }
             });
             _mainController.addButton(button);
@@ -105,7 +106,7 @@ public class Game {
     }
 
     public void cancelAction() {
-
+        this._currentAction = "";
     }
 
     public void registerAction(String action) {
@@ -114,5 +115,13 @@ public class Game {
 
     public void onAction(int _id) {
 
+    }
+
+    public boolean doingAction() {
+        if (_currentAction.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
