@@ -1,7 +1,7 @@
 package Core;
 
 import Controllers.Controller;
-import Core.MyButton;
+import IO.MyButton;
 import Entities.*;
 import Utility.Ballot;
 

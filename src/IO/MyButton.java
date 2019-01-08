@@ -1,4 +1,4 @@
-package Core;
+package IO;
 
 import javafx.scene.control.Button;
 

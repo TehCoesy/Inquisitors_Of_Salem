@@ -17,7 +17,7 @@ public class GameApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/MainGame.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root,690,490);
+        Scene scene = new Scene(root,700,585);
 
         Controller mainController = loader.getController();
 
