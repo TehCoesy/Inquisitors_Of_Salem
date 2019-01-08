@@ -4,12 +4,14 @@ import Controllers.Controller;
 import IO.MyButton;
 import Entities.*;
 import Utility.Ballot;
+import javafx.scene.input.MouseButton;
 
 import java.util.ArrayList;
 
 public class Game {
     //GAMEPLAY
     private int day = 0;
+    private String _currentAction;
 
     //GAMEPLAY PARAMETERS
     private static final int PLAYER_COUNT = 12;
@@ -93,7 +95,24 @@ public class Game {
                 System.out.println("Villager " + button.getID());
                 _mainController.addEvent("Clicked on Villager " + button.getID());
             });
+            button.setOnMouseClicked(e -> {
+                if (e.getButton() == MouseButton.SECONDARY) {
+
+                }
+            });
             _mainController.addButton(button);
         }
+    }
+
+    public void cancelAction() {
+
+    }
+
+    public void registerAction(String action) {
+        this._currentAction = action;
+    }
+
+    public void onAction(int _id) {
+
     }
 }

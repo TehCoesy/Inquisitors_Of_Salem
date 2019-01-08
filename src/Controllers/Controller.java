@@ -28,6 +28,10 @@ public class Controller {
     @FXML
     private Button lynch;
     @FXML
+    private Button investigatorAction;
+    @FXML
+    private Button healerAction;
+    @FXML
     private ListView messageBoard;
 
     //GAMEPLAY
@@ -36,6 +40,8 @@ public class Controller {
 
     public void init() {
         setControls();
+        setMiscControls();
+
         _mainGame.setController(this);
 
         try {
@@ -44,7 +50,6 @@ public class Controller {
             System.out.println(e.getMessage());
         }
 
-        //_mainGame.listVillagers();
         _mainGame.setUI();
     }
 
@@ -59,6 +64,44 @@ public class Controller {
 
         lynch.setOnAction(e -> {
 
+        });
+    }
+
+    private void setMiscControls() {
+        clearMessage.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                System.out.println("Cancel");
+            }
+        });
+
+        nextTurn.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                System.out.println("Cancel");
+            }
+        });
+
+        investigatorAction.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                System.out.println("Cancel");
+            }
+        });
+
+        healerAction.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                System.out.println("Cancel");
+            }
+        });
+
+        gameViewPane.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                System.out.print("Cancel");
+            }
+        });
+
+        lynch.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                System.out.println("Cancel");
+            }
         });
     }
 

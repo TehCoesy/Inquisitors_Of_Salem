@@ -10,34 +10,35 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controllers.Controller">
   <children>
-    <ListView fx:id="messageBoard" layoutX="500.0" layoutY="0.0" prefHeight="400.0" prefWidth="200.0" />
-    <Button id="optionsButton" layoutX="519.0" layoutY="414.0" mnemonicParsing="false" text="Options" />
+    <ListView fx:id="messageBoard" layoutX="500.0" layoutY="0.0" prefHeight="456.0" prefWidth="200.0" />
     <ImageView id="imageBoard" fitHeight="86.25" fitWidth="500.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" />
-    <Pane fx:id="gameViewPane" layoutX="0.0" layoutY="86.0" prefHeight="400.0" prefWidth="480.0" />
+    <Pane fx:id="gameViewPane" layoutX="0.0" layoutY="86.0" prefHeight="370.0" prefWidth="480.0" />
     <Pane layoutX="0.0" layoutY="490.0" prefHeight="95.0" prefWidth="700.0" style="-fx-border-width: 5px&#10;">
       <children>
-        <Button fx:id="investigatorAction" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Investigator">
+        <Button fx:id="investigatorAction" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Investigator">
           <tooltip>
             <Tooltip text="Investigator" />
           </tooltip>
         </Button>
-        <Button fx:id="healerAction" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Healer">
+        <Button fx:id="healerAction" layoutX="142.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Healer">
           <tooltip>
             <Tooltip text="Healer" />
           </tooltip>
         </Button>
-        <Button fx:id="nextTurn" layoutX="576.0" layoutY="25.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="Next Turn">
+        <Button fx:id="nextTurn" layoutX="576.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="Next Turn">
           <tooltip>
             <Tooltip text="Next Turn" />
           </tooltip>
         </Button>
-        <Button fx:id="lynch" layoutX="448.0" layoutY="25.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="Lynch">
+        <Button fx:id="lynch" layoutX="448.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" text="Lynch">
           <tooltip>
             <Tooltip text="Lynch" />
           </tooltip>
         </Button>
+        <TextField fx:id="currentToolTip" disable="true" editable="false" layoutX="14.0" layoutY="-18.0" opacity="1.0" prefHeight="32.0" prefWidth="450.0" text="Testing" />
+        <Button id="optionsButton" layoutX="519.0" layoutY="-18.0" mnemonicParsing="false" text="Options" />
+        <Button id="clearButton" fx:id="clearMessage" layoutX="616.0" layoutY="-18.0" mnemonicParsing="false" text="Clear" />
       </children>
     </Pane>
-    <Button id="clearButton" fx:id="clearMessage" layoutX="626.0" layoutY="414.0" mnemonicParsing="false" text="Clear" />
   </children>
 </AnchorPane>
