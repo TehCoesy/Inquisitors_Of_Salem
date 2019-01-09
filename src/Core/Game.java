@@ -92,8 +92,12 @@ public class Game {
             MyButton button = _factory.createPlayer(i);
             _buttons.add(button);
             button.setOnAction(e -> {
-                if (this._currentAction != null) {
+                if (!this._currentAction.isEmpty()) {
                     System.out.println(this._currentAction + " ON Villager " + button.getID());
+                    onAction(button.getID());
+                    cancelAction();
+                } else {
+                    getWill(button.getID());
                 }
             });
             button.setOnMouseClicked(e -> {
@@ -111,6 +115,7 @@ public class Game {
 
     public void registerAction(String action) {
         this._currentAction = action;
+        _mainController.pingToolTip(this._currentAction + " Action(s) available.");
     }
 
     public void onAction(int _id) {
@@ -123,5 +128,9 @@ public class Game {
         } else {
             return true;
         }
+    }
+
+    private void getWill(int ID) {
+        System.out.println("Villager " + ID + " 's Will");
     }
 }
