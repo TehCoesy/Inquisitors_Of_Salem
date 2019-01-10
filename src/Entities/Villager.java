@@ -1,6 +1,6 @@
 package Entities;
 
-public class Enemy extends Entity {
+public class Villager extends Entity {
     @Override
     public String onAction() {
         return null;

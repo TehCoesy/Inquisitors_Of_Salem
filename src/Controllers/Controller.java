@@ -62,7 +62,7 @@ public class Controller {
         });
 
         nextTurn.setOnAction(e -> {
-            _mainGame.nightTime();
+            _mainGame.nextTurn();
         });
 
         lynchAction.setOnAction(e -> {

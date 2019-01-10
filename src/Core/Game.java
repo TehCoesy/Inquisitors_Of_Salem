@@ -10,13 +10,16 @@ import java.util.ArrayList;
 
 public class Game {
     //GAMEPLAY
+    private boolean _lynchActed = false;
     private int day = 0;
     private String _currentAction = "";
 
     //GAMEPLAY PARAMETERS
     private static final int PLAYER_COUNT = 12;
-    private static final int VILLAGER_COUNT = 9;
+    private static final int VILLAGER_COUNT = 7;
     private static final int ENEMIES_COUNT = 3;
+    private static final int INVESTIGATOR_COUNT = 1;
+    private static final int HEALER_COUNT = 1;
 
     //UTILITY
     VillagerFactory _factory = new VillagerFactory();
@@ -27,10 +30,10 @@ public class Game {
     private Controller _mainController;
 
     //ENTITIES
-    private ArrayList<Entity> _allEntities;
-    private ArrayList<Entity> _villagers;
-    private ArrayList<Entity> _enemies;
-    private Investigator _invest;
+    private EntityContainer _container = new EntityContainer();
+    private WolvesTeam _wolvesTeam = new WolvesTeam(_container);
+
+    //ACTION
 
     public void newGame() throws Exception {
         if (_mainController == null) {
@@ -39,48 +42,74 @@ public class Game {
 
         ballot = new Ballot(PLAYER_COUNT);
 
-        _allEntities = new ArrayList<>();
-        _villagers = new ArrayList<>();
-        _enemies = new ArrayList<>();
+        _container.newLists();
 
-        if (VILLAGER_COUNT + ENEMIES_COUNT != PLAYER_COUNT) {
+        if (VILLAGER_COUNT + ENEMIES_COUNT + INVESTIGATOR_COUNT + HEALER_COUNT != PLAYER_COUNT) {
             throw new Exception("Internal Setting: PLAYER_COUNT not valid (different than VILLAGER_COUNT + ENEMIES_COUNT)");
         }
 
         for (int i = 0; i < ENEMIES_COUNT; i++) {
-            Enemy enemy = new Enemy();
-            enemy.setRole("Enemy");
+            Entity enemy = new Villager();
+            enemy._trueRole = "Enemy";
             enemy.setID(ballot.getBallot());
-            _enemies.add(enemy);
+            _container._enemies.add(enemy);
         }
 
         for (int i = 0; i < VILLAGER_COUNT; i++) {
-            Entity entity = new Entity();
+            Entity entity = new Villager();
             entity.setID(ballot.getBallot());
-            _villagers.add(entity);
+            _container._villagers.add(entity);
         }
 
-        _allEntities.addAll(_enemies);
-        _allEntities.addAll(_villagers);
+        for (int i = 0; i < INVESTIGATOR_COUNT; i++) {
+            Entity investigator = new Investigator();
+            investigator.setID(ballot.getBallot());
+            investigator._trueRole = "Investigator";
+            _container._investigator.add(investigator);
+        }
+
+        for (int i = 0; i < HEALER_COUNT; i++) {
+            Entity healer = new Healer();
+            healer.setID(ballot.getBallot());
+            healer._trueRole = "Healer";
+            _container._healer.add(healer);
+        }
+
+        _container.addAll();
 
         ballot = null;
     }
 
-    public void deconstructGame() {
-        _allEntities = null;
-        _villagers = null;
-        _enemies = null;
-        _invest = null;
-    }
+    public void nextTurn() {
+        System.out.println("NextTurn");
 
-    public void nightTime() {
+        _wolvesTeam.onAction();
 
-    }
+        String _investEvent = _container._investigator.get(0).onAction();
 
-    public void listVillagers() {
-        for (Entity entity : _allEntities) {
-            System.out.println(entity.toString());
+        if (_investEvent != null) {
+            _mainController.addEvent(_investEvent);
         }
+
+        String _healerEvent = _container._healer.get(0).onAction();
+
+        if (_healerEvent != null) {
+            _mainController.addEvent(_healerEvent);
+        }
+
+        for (Entity _entity : _container._allEntities) {
+            _entity.applyEffect();
+        }
+
+        for (Entity _entity : _container._allEntities) {
+            if (_entity._dead) {
+                System.out.println(_entity.getID() + " is dead.");
+                _mainController.addEvent(_entity.getID() + " is dead.");
+            }
+        }
+
+        day++;
+        _lynchActed = false;
     }
 
     public void setController(Controller controller) {
@@ -93,7 +122,7 @@ public class Game {
             _buttons.add(button);
             button.setOnAction(e -> {
                 if (!this._currentAction.isEmpty()) {
-                    System.out.println(this._currentAction + " ON Villager " + button.getID());
+                    _mainController.addEvent(this._currentAction + " ON Villager " + button.getID());
                     onAction(button.getID());
                     cancelAction();
                 } else {
@@ -119,14 +148,17 @@ public class Game {
     }
 
     public void onAction(int _id) {
-
-    }
-
-    public boolean doingAction() {
-        if (_currentAction.isEmpty()) {
-            return false;
-        } else {
-            return true;
+        if (this._currentAction == "INVESTIGATOR") {
+            _container._investigator.get(0).regigsterAction(_container._allEntities.get(_id));
+        } else if (this._currentAction == "HEALER") {
+            _container._healer.get(0).regigsterAction(_container._allEntities.get(_id));
+        } else if (this._currentAction == "LYNCH") {
+            if (!_lynchActed) {
+                _container._allEntities.get(_id)._dead = true;
+                _lynchActed = true;
+            } else {
+                _mainController.pingToolTip("You already voted 1 this turn.");
+            }
         }
     }
 

@@ -1,17 +1,18 @@
 package Entities;
 
-public class Entity {
+import java.util.ArrayList;
+
+public abstract class Entity {
+    protected Entity _target = null;
     private int _ID;
-    private String _role = "Villager";
-    private boolean _dead;
+    public String _role = "Villager";
+    public String _trueRole = "Villager";
 
-    public void kill() {
-        this._dead = true;
-    }
+    //EFFECTS
+    public boolean _dead;
+    public boolean _harmed;
 
-    public boolean isDead() {
-        return this._dead;
-    }
+    public ArrayList<String> _will =  new ArrayList<>();
 
     public int getID() {
         return _ID;
@@ -21,16 +22,32 @@ public class Entity {
         this._ID = _ID;
     }
 
-    public String getRole() {
-        return _role;
-    }
-
-    public void setRole(String _role) {
-        this._role = _role;
-    }
-
     public String toString() {
         String _output = this._role + " ID: " + this._ID;
         return _output;
+    }
+
+    public void addWill(String text) {
+        _will.add(text);
+    }
+
+    public void revealRole() {
+        _role = _trueRole;
+    }
+
+    public abstract String onAction();
+
+    public void regigsterAction(Entity target) {
+        this._target = target;
+    }
+
+    public void cancelAction() {
+        this._target = null;
+    }
+
+    public void applyEffect() {
+        if (_harmed) {
+            _dead = true;
+        }
     }
 }
