@@ -35,14 +35,48 @@ public class Game {
 
     //ACTION
 
+    public Game(Controller controller) {
+        this._mainController = controller;
+
+        _container.newLists();
+
+        setUI();
+    }
+
+    private void setUI() {
+        for (int i = 1; i <= PLAYER_COUNT; i++) {
+            MyButton button = _factory.createPlayer(i);
+            _buttons.add(button);
+
+            button._villager = new Villager();
+            button.setOnAction(e -> {
+                if (!this._currentAction.isEmpty()) {
+                    if (button._villager._dead) {
+                        _mainController.pingToolTip(button._villager.getID() + " is Dead.");
+                    } else {
+                        _mainController.addEvent(this._currentAction + " ON Villager " + button._villager.getID());
+                        onAction(button._villager);
+                        cancelAction();
+                    }
+                } else {
+                    getWill(button._villager.getID());
+                }
+            });
+            button.setOnMouseClicked(e -> {
+                if (e.getButton() == MouseButton.SECONDARY) {
+                    cancelAction();
+                }
+            });
+            _mainController.addButton(button);
+        }
+    }
+
     public void newGame() throws Exception {
         if (_mainController == null) {
             throw new Exception("newGame(): UI Controller not set.");
         }
 
         ballot = new Ballot(PLAYER_COUNT);
-
-        _container.newLists();
 
         if (VILLAGER_COUNT + ENEMIES_COUNT + INVESTIGATOR_COUNT + HEALER_COUNT != PLAYER_COUNT) {
             throw new Exception("Internal Setting: PLAYER_COUNT not valid (different than VILLAGER_COUNT + ENEMIES_COUNT)");
@@ -53,12 +87,14 @@ public class Game {
             enemy._trueRole = "Enemy";
             enemy.setID(ballot.getBallot());
             _container._enemies.add(enemy);
+            _buttons.get(enemy.getID() - 1)._villager = enemy;
         }
 
         for (int i = 0; i < VILLAGER_COUNT; i++) {
             Entity entity = new Villager();
             entity.setID(ballot.getBallot());
             _container._villagers.add(entity);
+            _buttons.get(entity.getID() - 1)._villager = entity;
         }
 
         for (int i = 0; i < INVESTIGATOR_COUNT; i++) {
@@ -66,6 +102,7 @@ public class Game {
             investigator.setID(ballot.getBallot());
             investigator._trueRole = "Investigator";
             _container._investigator.add(investigator);
+            _buttons.get(investigator.getID() - 1)._villager = investigator;
         }
 
         for (int i = 0; i < HEALER_COUNT; i++) {
@@ -73,12 +110,14 @@ public class Game {
             healer.setID(ballot.getBallot());
             healer._trueRole = "Healer";
             _container._healer.add(healer);
+            _buttons.get(healer.getID() - 1)._villager = healer;
         }
 
         _container.addAll();
 
         ballot = null;
     }
+
 
     public void nextTurn() {
         System.out.println("NextTurn");
@@ -98,13 +137,9 @@ public class Game {
         }
 
         for (Entity _entity : _container._allEntities) {
-            _entity.applyEffect();
-        }
-
-        for (Entity _entity : _container._allEntities) {
-            if (_entity._dead) {
-                System.out.println(_entity.getID() + " is dead.");
-                _mainController.addEvent(_entity.getID() + " is dead.");
+            if (_entity._harmed && !_entity._dead) {
+                _entity.applyEffect();
+                _mainController.addEvent(_entity.getID() + " was killed.");
             }
         }
 
@@ -112,31 +147,7 @@ public class Game {
         _lynchActed = false;
     }
 
-    public void setController(Controller controller) {
-        this._mainController = controller;
-    }
 
-    public void setUI() {
-        for (int i = 0; i < PLAYER_COUNT; i++) {
-            MyButton button = _factory.createPlayer(i);
-            _buttons.add(button);
-            button.setOnAction(e -> {
-                if (!this._currentAction.isEmpty()) {
-                    _mainController.addEvent(this._currentAction + " ON Villager " + button.getID());
-                    onAction(button.getID());
-                    cancelAction();
-                } else {
-                    getWill(button.getID());
-                }
-            });
-            button.setOnMouseClicked(e -> {
-                if (e.getButton() == MouseButton.SECONDARY) {
-                    cancelAction();
-                }
-            });
-            _mainController.addButton(button);
-        }
-    }
 
     public void cancelAction() {
         this._currentAction = "";
@@ -147,14 +158,14 @@ public class Game {
         _mainController.pingToolTip(this._currentAction + " Action(s) available.");
     }
 
-    public void onAction(int _id) {
+    public void onAction(Entity target) {
         if (this._currentAction == "INVESTIGATOR") {
-            _container._investigator.get(0).regigsterAction(_container._allEntities.get(_id));
+            _container._investigator.get(0).regigsterAction(target);
         } else if (this._currentAction == "HEALER") {
-            _container._healer.get(0).regigsterAction(_container._allEntities.get(_id));
+            _container._healer.get(0).regigsterAction(target);
         } else if (this._currentAction == "LYNCH") {
             if (!_lynchActed) {
-                _container._allEntities.get(_id)._dead = true;
+                target._dead = true;
                 _lynchActed = true;
             } else {
                 _mainController.pingToolTip("You already voted 1 this turn.");

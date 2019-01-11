@@ -38,22 +38,20 @@ public class Controller {
     private ListView messageBoard;
 
     //GAMEPLAY
-    Game _mainGame = new Game();
+    Game _mainGame;
     ArrayList<String> _events = new ArrayList<>();
 
     public void init() {
+        _mainGame = new Game(this);
+
         setControls();
         setMiscControls();
-
-        _mainGame.setController(this);
 
         try {
             _mainGame.newGame();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        _mainGame.setUI();
     }
 
     private void setControls() {

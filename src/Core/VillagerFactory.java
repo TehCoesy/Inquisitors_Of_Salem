@@ -12,14 +12,14 @@ public class VillagerFactory {
     }
 
     public MyButton createPlayer(int _id) {
-        int _calc = _id % COUNT_PER_ROW;
+        int _calc = (_id - 1) % COUNT_PER_ROW;
         MyButton button = new MyButton();
         button.setPrefWidth(SQUARE_SIZE);
         button.setPrefHeight(SQUARE_SIZE);
         button.setLayoutX(20 + (_calc) * (SQUARE_SIZE + 20));
-        button.setLayoutY(20 + ((_id - _calc) / COUNT_PER_ROW) * (SQUARE_SIZE + 20));
-        button.setText("Villager " + (_id + 1));
-        button.setID(_id + 1);
+        button.setLayoutY(20 + ((_id - _calc - 1) / COUNT_PER_ROW) * (SQUARE_SIZE + 20));
+        button.setText("Villager " + (_id));
+        button.setID(_id);
         return button;
     }
 }

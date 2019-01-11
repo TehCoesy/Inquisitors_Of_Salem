@@ -4,7 +4,7 @@ public class Healer extends Entity {
     @Override
     public String onAction() {
         if (_target == null) {
-            return "No HEALER action.";
+            return null;
         }
 
         if (_target._harmed) {

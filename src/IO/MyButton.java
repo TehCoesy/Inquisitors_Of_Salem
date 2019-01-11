@@ -1,9 +1,11 @@
 package IO;
 
+import Entities.Entity;
 import javafx.scene.control.Button;
 
 public class MyButton extends Button {
     private int _ID;
+    public Entity _villager;
 
     public void dead() {
         String _currentText = getText();

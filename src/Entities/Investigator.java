@@ -4,7 +4,7 @@ public class Investigator extends Entity {
     @Override
     public String onAction() {
         if (_target == null) {
-            return "No INVESTIGATOR action.";
+            return null;
         }
 
         if (_target._trueRole == "Enemy") {

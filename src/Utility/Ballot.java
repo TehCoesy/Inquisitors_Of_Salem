@@ -13,11 +13,11 @@ public class Ballot {
 
         _count = count;
 
-        for (int i = 0; i < count; i++) {
-            int index = random.nextInt(_count);
+        for (int i = 1; i <= count; i++) {
+            int index = random.nextInt(_count) + 1;
 
             while (_pool.contains(index)) {
-                index = random.nextInt(_count);
+                index = random.nextInt(_count) + 1;
             }
 
             _pool.add(new Integer(index));
