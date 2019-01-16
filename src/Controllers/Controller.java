@@ -1,6 +1,6 @@
 package Controllers;
 
-import Core.Game;
+import Core.*;
 import IO.MyButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;

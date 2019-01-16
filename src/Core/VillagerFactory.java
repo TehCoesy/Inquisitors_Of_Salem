@@ -14,6 +14,8 @@ public class VillagerFactory {
     public MyButton createPlayer(int _id) {
         int _calc = (_id - 1) % COUNT_PER_ROW;
         MyButton button = new MyButton();
+        button.getStyleClass().add("button_custom");
+        button.getStyleClass().add("button_villager");
         button.setPrefWidth(SQUARE_SIZE);
         button.setPrefHeight(SQUARE_SIZE);
         button.setLayoutX(20 + (_calc) * (SQUARE_SIZE + 20));

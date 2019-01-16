@@ -67,6 +67,8 @@ public class Game {
                     cancelAction();
                 }
             });
+
+            
             _mainController.addButton(button);
         }
     }
@@ -116,6 +118,8 @@ public class Game {
         _container.addAll();
 
         ballot = null;
+
+        updateButtonsGraphics();
     }
 
 
@@ -139,12 +143,16 @@ public class Game {
         for (Entity _entity : _container._allEntities) {
             if (_entity._harmed && !_entity._dead) {
                 _entity.applyEffect();
+                _entity.revealRole();
                 _mainController.addEvent(_entity.getID() + " was killed.");
+                _mainController.addEvent(_entity.getID() + " was " + _entity._role);
             }
         }
 
         day++;
         _lynchActed = false;
+
+        updateButtonsGraphics();
     }
 
 
@@ -169,6 +177,24 @@ public class Game {
                 _lynchActed = true;
             } else {
                 _mainController.pingToolTip("You already voted 1 this turn.");
+            }
+        }
+    }
+
+    private void updateButtonsGraphics() {
+        if (this._container == null) {
+            return;
+        }
+
+        for (MyButton button : _buttons) {
+            if (button._villager._dead) {
+                button.getStyleClass().clear();
+                button.getStyleClass().add("button_custom");
+                button.getStyleClass().add("button_dead");
+            } else if (button._villager._trueRole == "Enemy") {
+                button.getStyleClass().clear();
+                button.getStyleClass().add("button_custom");
+                button.getStyleClass().add("button_enemy");
             }
         }
     }

@@ -20,4 +20,12 @@ public class MyButton extends Button {
     public void setID(int _ID) {
         this._ID = _ID;
     }
+
+    private void updateText() {
+        String text = "Villager " + _ID + "\n[" + _villager._role + "] ";
+        if (_villager._dead) {
+            text += "[DEAD]";
+        }
+        this.setText(text);
+    }
 }

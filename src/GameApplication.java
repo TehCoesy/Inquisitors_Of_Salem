@@ -18,6 +18,7 @@ public class GameApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/MainGame.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root,700,585);
+        scene.getStylesheets().add(getClass().getResource("CSS/styleSheet.css").toString());
 
         Controller mainController = loader.getController();
 
