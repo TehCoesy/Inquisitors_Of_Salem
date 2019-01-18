@@ -1,6 +1,7 @@
-package Entities;
+package AI;
 
 import Core.EntityContainer;
+import Entities.Entity;
 
 import java.util.ArrayList;
 import java.util.Random;

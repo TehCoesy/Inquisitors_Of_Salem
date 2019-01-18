@@ -1,5 +1,6 @@
 package Core;
 
+import AI.WolvesTeam;
 import Controllers.Controller;
 import IO.MyButton;
 import Entities.*;
@@ -13,6 +14,7 @@ public class Game {
     private boolean _lynchActed = false;
     private int day = 0;
     private String _currentAction = "";
+    private boolean _gameEnd = false;
 
     //GAMEPLAY PARAMETERS
     private static final int PLAYER_COUNT = 12;
@@ -124,6 +126,10 @@ public class Game {
 
 
     public void nextTurn() {
+        if (_gameEnd) {
+            return;
+        }
+
         System.out.println("NextTurn");
 
         _wolvesTeam.onAction();
@@ -153,6 +159,7 @@ public class Game {
         _lynchActed = false;
 
         updateButtonsGraphics();
+        checkWinCondition();
     }
 
 
@@ -162,11 +169,19 @@ public class Game {
     }
 
     public void registerAction(String action) {
+        if (_gameEnd) {
+            return;
+        }
+
         this._currentAction = action;
         _mainController.pingToolTip(this._currentAction + " Action(s) available.");
     }
 
     public void onAction(Entity target) {
+        if (_gameEnd) {
+            return;
+        }
+
         if (this._currentAction == "INVESTIGATOR") {
             _container._investigator.get(0).regigsterAction(target);
         } else if (this._currentAction == "HEALER") {
@@ -201,5 +216,13 @@ public class Game {
 
     private void getWill(int ID) {
         System.out.println("Villager " + ID + " 's Will");
+    }
+
+    private void checkWinCondition() {
+        _container.updateStatus();
+        if (_container._enemyLeft > _container._villagerLeft) {
+            _gameEnd = true;
+            _mainController.addEvent("You lose!");
+        }
     }
 }
