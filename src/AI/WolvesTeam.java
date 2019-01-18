@@ -25,7 +25,7 @@ public class WolvesTeam {
 
             _target = _container._allEntities.get(_targetID);
 
-            if (!isTeamMate(_target)) {
+            if (!isTeamMate(_target) && !_target._dead) {
                 _decided = true;
             }
         }

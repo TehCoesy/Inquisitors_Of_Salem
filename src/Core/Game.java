@@ -194,6 +194,14 @@ public class Game {
                 _mainController.pingToolTip("You already voted 1 this turn.");
             }
         }
+
+        updateButtonsGraphics();
+        _container.updateStatus();
+
+        if (_container._enemyLeft == 0) {
+            _gameEnd = true;
+            _mainController.addEvent("You win!");
+        }
     }
 
     private void updateButtonsGraphics() {
@@ -206,7 +214,7 @@ public class Game {
                 button.getStyleClass().clear();
                 button.getStyleClass().add("button_custom");
                 button.getStyleClass().add("button_dead");
-            } else if (button._villager._trueRole == "Enemy") {
+            } else if (button._villager._role == "Enemy") {
                 button.getStyleClass().clear();
                 button.getStyleClass().add("button_custom");
                 button.getStyleClass().add("button_enemy");
@@ -223,6 +231,11 @@ public class Game {
         if (_container._enemyLeft > _container._villagerLeft) {
             _gameEnd = true;
             _mainController.addEvent("You lose!");
+            for (Entity entity : _container._enemies) {
+                entity.revealRole();
+            }
+
+            updateButtonsGraphics();
         }
     }
 }
