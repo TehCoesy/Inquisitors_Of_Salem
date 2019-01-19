@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Entity {
     protected Entity _target = null;
     private int _ID;
-    public String _role = "Villager";
+    public String _role = "Undiscovered";
     public String _trueRole = "Villager";
 
     //EFFECTS

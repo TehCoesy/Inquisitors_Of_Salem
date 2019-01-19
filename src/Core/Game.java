@@ -218,6 +218,12 @@ public class Game {
                 button.getStyleClass().clear();
                 button.getStyleClass().add("button_custom");
                 button.getStyleClass().add("button_enemy");
+            } else {
+                if (button._villager._role != "Undiscovered") {
+                    button.getStyleClass().clear();
+                    button.getStyleClass().add("button_custom");
+                    button.getStyleClass().add("button_villager");
+                }
             }
         }
     }

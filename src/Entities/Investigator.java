@@ -7,8 +7,9 @@ public class Investigator extends Entity {
             return null;
         }
 
+        _target.revealRole();
+
         if (_target._trueRole == "Enemy") {
-            _target.revealRole();
             return _target.getID() + " is an Enemy!";
         } else {
             return _target.getID() + " is innocent.";
