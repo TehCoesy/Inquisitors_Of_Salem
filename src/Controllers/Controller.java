@@ -19,6 +19,10 @@ public class Controller {
     @FXML
     private TextField currentToolTip;
     @FXML
+    private TextField villagerCount;
+    @FXML
+    private TextField enemyCount;
+    @FXML
     private Button optionButton;
     @FXML
     private Button clearMessage;
@@ -131,6 +135,11 @@ public class Controller {
         ObservableList<String> _items = FXCollections.observableArrayList(_events);
         messageBoard.setItems(_items);
         messageBoard.refresh();
+    }
+
+    public void setPlayerCount(int villager, int enemy) {
+        villagerCount.setText("Villagers: " + villager);
+        enemyCount.setText("Enemies: " + enemy);
     }
 
     public void pingToolTip(String text) {

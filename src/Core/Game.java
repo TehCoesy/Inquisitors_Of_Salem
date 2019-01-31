@@ -127,6 +127,9 @@ public class Game {
         ballot = null;
 
         updateButtonsGraphics();
+
+        _container.updateStatus();
+        _mainController.setPlayerCount(_container._villagerLeft, _container._enemyLeft);
     }
 
 
@@ -165,6 +168,9 @@ public class Game {
 
         updateButtonsGraphics();
         checkWinCondition();
+
+        _container.updateStatus();
+        _mainController.setPlayerCount(_container._villagerLeft, _container._enemyLeft);
     }
 
 
