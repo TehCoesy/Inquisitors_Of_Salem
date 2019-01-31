@@ -5,6 +5,7 @@ import Controllers.Controller;
 import IO.MyButton;
 import Entities.*;
 import Utility.Ballot;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 
 import java.util.ArrayList;
@@ -92,6 +93,7 @@ public class Game {
             enemy.setID(ballot.getBallot());
             _container._enemies.add(enemy);
             _buttons.get(enemy.getID() - 1)._villager = enemy;
+            _buttons.get(enemy.getID() - 1).setTooltip(new Tooltip(enemy._role));
         }
 
         for (int i = 0; i < VILLAGER_COUNT; i++) {
@@ -99,6 +101,7 @@ public class Game {
             entity.setID(ballot.getBallot());
             _container._villagers.add(entity);
             _buttons.get(entity.getID() - 1)._villager = entity;
+            _buttons.get(entity.getID() - 1).setTooltip(new Tooltip(entity._role));
         }
 
         for (int i = 0; i < INVESTIGATOR_COUNT; i++) {
@@ -107,6 +110,7 @@ public class Game {
             investigator._trueRole = "Investigator";
             _container._investigator.add(investigator);
             _buttons.get(investigator.getID() - 1)._villager = investigator;
+            _buttons.get(investigator.getID() - 1).setTooltip(new Tooltip(investigator._role));
         }
 
         for (int i = 0; i < HEALER_COUNT; i++) {
@@ -115,6 +119,7 @@ public class Game {
             healer._trueRole = "Healer";
             _container._healer.add(healer);
             _buttons.get(healer.getID() - 1)._villager = healer;
+            _buttons.get(healer.getID() - 1).setTooltip(new Tooltip(healer._role));
         }
 
         _container.addAll();
@@ -189,6 +194,7 @@ public class Game {
         } else if (this._currentAction == "LYNCH") {
             if (!_lynchActed) {
                 target._dead = true;
+                target.revealRole();
                 _lynchActed = true;
             } else {
                 _mainController.pingToolTip("You already voted 1 this turn.");
@@ -218,6 +224,10 @@ public class Game {
                 button.getStyleClass().clear();
                 button.getStyleClass().add("button_custom");
                 button.getStyleClass().add("button_enemy");
+            } else if (button._villager._role == "Investigator" || button._villager._role == "Healer") {
+                button.getStyleClass().clear();
+                button.getStyleClass().add("button_custom");
+                button.getStyleClass().add("button_special");
             } else {
                 if (button._villager._role != "Undiscovered") {
                     button.getStyleClass().clear();
@@ -225,6 +235,7 @@ public class Game {
                     button.getStyleClass().add("button_villager");
                 }
             }
+            button.setTooltip(new Tooltip(button._villager._role));
         }
     }
 

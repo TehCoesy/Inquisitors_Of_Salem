@@ -1,6 +1,7 @@
 package Core;
 
 import IO.MyButton;
+import javafx.scene.control.Tooltip;
 
 public class VillagerFactory {
     private int SQUARE_SIZE = 100;

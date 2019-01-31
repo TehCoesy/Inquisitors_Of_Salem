@@ -1,6 +1,7 @@
 package Entities;
 
 public class Healer extends Entity {
+    private Entity lastTarget;
     @Override
     public String onAction() {
         if (_target == null) {
