@@ -209,6 +209,7 @@ public class Game {
 
         updateButtonsGraphics();
         _container.updateStatus();
+        _mainController.setPlayerCount(_container._villagerLeft, _container._enemyLeft);
 
         if (_container._enemyLeft == 0) {
             _gameEnd = true;
